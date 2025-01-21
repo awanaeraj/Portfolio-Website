@@ -1,5 +1,4 @@
 
-yaml
 name: linting-workflow
 
 on:
@@ -26,3 +25,4 @@ jobs:
         run: npx stylelint "**/*.css"
       - name: List Contents of Package.json
         run: cat package.json
+
