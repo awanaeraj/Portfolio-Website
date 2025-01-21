@@ -1,24 +1,26 @@
-name: linting-pipeline
+name: linting-workflow
+
 on:
   push:
     branches:
-    - develop
+      - develop
   pull_request:
     branches:
-    - develop
+      - develop
+
 jobs:
-  linting-job:
+  limiting-jobs:
     runs-on: ubuntu-latest
     steps:
-      - name: Clone Repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
-      - name: create package.json
-        run: npm init -y  
-      - name: Install HTML Hint
+      - name: Install HTMLHint
         run: npm install --save-dev htmlhint
-      - name: Run HTML Hint
-        run: npx htmlhint "**/*.html" 
-      - name: Install Style Hint
+      - name: Install Stylelint
         run: npm install --save-dev stylelint
-      - name: Run Stylelint
+      - name: Lint HTML Files
+        run: npx htmlhint "**/*.html"
+      - name: Lint CSS Files
         run: npx stylelint "**/*.css"
+      - name: List Contents of Package.json
+        run: cat package.json
